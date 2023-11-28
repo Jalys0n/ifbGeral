@@ -12,13 +12,13 @@ def cadastroUsuario():
     comunidade = request.form.get['comunidade']
     preferencia = request.form.get['preferencia']
     if preferencia == 'preferenciasim':
-        senha = gerarSenhaPreferencial()
+       senha = gerarSenhaPreferencial()
     else:
-        senha = gerarSenhaNormal()
+      senha = gerarSenhaNormal()
     cadastrarUsuario(cpf_usuario, nome, comunidade)
     cadastrarSenha(senha)
 
-    #cadastrarAtendimento tem q ser por último, preciso rever esses parâmetros!
+    #cadastrarAtendimento tem q ser por último, preciso rever esses parâmetros! e tratar pra, caso não forem tudo, não ir nenhum
     cadastrarAtendimento()
 
     if cadastrarUsuario() and cadastrarSenha() and cadastrarAtendimento():
@@ -26,8 +26,6 @@ def cadastroUsuario():
     else:
         return "Cheque os dados e tente novamente! A senha não foi gerada"
     
-
-
 
 
 
@@ -40,13 +38,15 @@ def loginServidor():
     loginServidor(cpf_servidor, senha_servidor)
 
 
-@app.route('/chamarSenha', methods =['GET'])
+@app.route('/chamarSenha', methods=['GET'])
 def chamarSenha():
-    for n in listarSenhasNaFila():
-        print(n)
+    cursor = listarSenhasNaFila()
+    senha = cursor.fetchone()
 
-    #fazer um if porque ai, quando estiver feita, mandar essa senha pra tabela senhas ok!
-    
+    if senha:
+     print(senha)
+     cadastrarNaTabelaSenha(senha)
+     cursor.close()
 
     return "Senha convocada!"
     

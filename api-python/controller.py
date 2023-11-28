@@ -59,5 +59,7 @@ def cadastrarNaTabelaSenha(idSenha):
    cursor.execute(sql)
    conexao.commit()
    cursor.close()
-#tabelas existentes no banco de dados: atendimento, senhas, servidores, tipo_atendimento, usuarios
+
+#tabelas existentes no banco de dados: atendimento, senhas, servidores, tipo_atendimento, usuarios. ai eu acho q vai ter duas novas
+#
 
