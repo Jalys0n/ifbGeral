@@ -4,7 +4,7 @@ from conexao import conexao
 
 
 def gerarSenhaNormal(length=6):
-    letras = 'ABC'
+    letras = 'PREF'
     numeros = ''.join(random.choice(string.digits) for i in range(3)) 
     senha = letras + numeros   
 
@@ -16,6 +16,8 @@ def gerarSenhaPreferencial(length=6):
    senha = letras + numeros
    return senha
 
+#table usuario
+
 def cadastrarUsuario(cpf_usuario, nome):
     sql = 'INSERT INTO usuario (cpf_usuario,nome, origem_usuario) values (?,?,?)'
     cursor = conexao.cursor()
@@ -23,12 +25,8 @@ def cadastrarUsuario(cpf_usuario, nome):
     conexao.commit()
     cursor.close()
 
-def cadastrarSenha(idSenha):
-    sql = 'INSERT INTO emFila (idSenha) values (?)'
-    cursor = conexao.cursor()
-    cursor.execute(sql, (idSenha))
-    conexao.commit()
-    cursor.close() 
+
+#atendimentos 
 
 def cadastrarAtendimento(guiche, fk_cpf_usuario, fk_cpf_servidor, fk_idSenha):
    sql = 'INSERT INTO atendimento (guiche, fk_cpf_usuario, fk_cpf_servidor, fk_idSenha)'
@@ -44,6 +42,14 @@ def listarAtendimento():
    resultado = cursor.fetchall()
    cursor.close()
 
+   #função pra ser chamada quando terminar o atendimento
+def incluirTerminoAtendimento(idSenha):
+   sql = 'insert into atendimento (finalAtendimento) where idSenha = ?'
+   cursor = conexao.cursor()
+   cursor.execute(sql, (idSenha))
+   cursor.closer()   
+
+#senhas
 
 def listarSenhasNaFila():
    sql = 'SELECT * FROM nafila'
@@ -59,6 +65,14 @@ def cadastrarNaTabelaSenha(idSenha):
    cursor.execute(sql)
    conexao.commit()
    cursor.close()
+
+def cadastrarSenha(idSenha):
+    sql = 'INSERT INTO emFila (idSenha) values (?)'
+    cursor = conexao.cursor()
+    cursor.execute(sql, (idSenha))
+    conexao.commit()
+    cursor.close() 
+
 
 #tabelas existentes no banco de dados: atendimento, senhas, servidores, tipo_atendimento, usuarios. ai eu acho q vai ter duas novas
 #

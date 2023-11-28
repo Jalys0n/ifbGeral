@@ -1,10 +1,10 @@
 from flask import Flask
-from controller import gerarSenhaNormal, cadastrarUsuario, cadastrarSenha, cadastrarAtendimento, listarAtendimento, listarSenhasNaFila, cadastrarNaTabelaSenha
+from controller import gerarSenhaPreferencial,gerarSenhaNormal, cadastrarUsuario, cadastrarSenha, cadastrarAtendimento, listarSenhasNaFila, cadastrarNaTabelaSenha
 
 app = Flask(__name__)
 
 #página cadastro-usuario
-@app.route('/cadastro', methods = ['POST'])
+@app.route('/solicitar-senha', methods = ['POST'])
 def cadastroUsuario():
     cpf_usuario = request.form.get['cpf_usuario']
     nome = request.form.get['nomeUsuario']
@@ -18,7 +18,7 @@ def cadastroUsuario():
     cadastrarUsuario(cpf_usuario, nome, comunidade)
     cadastrarSenha(senha)
 
-    #cadastrarAtendimento tem q ser por último, preciso rever esses parâmetros! e tratar pra, caso não forem tudo, não ir nenhum
+    #cadastrarAtendimento tem q ser por último, preciso rever esses parâmetros! e tratar pra, caso não forem tudo, não ir nenhum. questão de atomicidade
     cadastrarAtendimento()
 
     if cadastrarUsuario() and cadastrarSenha() and cadastrarAtendimento():
@@ -31,22 +31,20 @@ def cadastroUsuario():
 
 #referentes ao servidor:
 
-@app.route('/loginServidor', methods = ['POST'])
+@app.route('/login-servidor', methods = ['POST'])
 def loginServidor():
     cpf_servidor = request.form.get['cpf_servidor']
     senha_servidor = request.form.get['senha_servidor']
     loginServidor(cpf_servidor, senha_servidor)
 
 
-@app.route('/chamarSenha', methods=['GET'])
+@app.route('/chamar-senha', methods=['GET'])
 def chamarSenha():
     cursor = listarSenhasNaFila()
     senha = cursor.fetchone()
-
-    if senha:
-     print(senha)
-     cadastrarNaTabelaSenha(senha)
-     cursor.close()
+    print (senha)
+    cadastrarNaTabelaSenha(senha)
+    cursor.close()
 
     return "Senha convocada!"
     
