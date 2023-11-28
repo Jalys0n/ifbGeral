@@ -1,6 +1,5 @@
 import random
 import string
-from conexao import db
 
 def gerarSenhaNormal(length=6):
     letras = 'ABC'

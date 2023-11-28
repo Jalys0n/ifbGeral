@@ -1,0 +1,77 @@
+<header class="header">
+    <div class="divHeader">
+        
+        <div class="divimgLogo">
+            <img src="../assets/img/header/logobsb.jpg" alt="" class="mt-2 imgLogo">
+        </div>
+
+        <div class="ptexto">
+            <div class="p">
+                <p class="text-center mt-2">SEJAM BEM-VINDOS AO REGISTRO ACADÊMICO</p>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+
+
+<div class="formulario">
+        <div class="divimgCelular"><img src="../assets/img/formulario/ImagemCelular.png" alt="" class="imgCelular"></div>
+
+        <div class="formcampo">
+                    <form action="" class="mb-3">
+
+
+                        <label for="nomeUsuario" class="form-label">Nome:</label>
+                        <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control Input" placeholder="Digite seu nome"> 
+                    
+
+                        <label for="cpfUsuario" class="form-label">CPF: </label>
+                        <input type="number" name="cpf" id="cpf" placeholder="Digite seu CPF" class="form-control Input">
+
+
+                        <label for="assuntoAtendimento" class="form-label">Assunto: </label>
+                        <select id="assuntoAtendimento" class="form-select Input" name="assuntoAtendimento">
+                                    <option value=""></option>
+                                    <option value="Trancamento-de-Matricula">Trancamento de Matrícula</option>
+                                    <option value="Trancamento-de-materia">Trancamento de Matéria</option>
+                                    <option value="Emissao-de-declaracao">Emitir Declaração</option>
+                                    <option value="Emissao-de-carteirinha">Emitir Carteirinha</option>
+                                    <option value="Emissao-de-historico">Emitir Histórico</option>
+                                    <option value="Registro-de-academico">Registro Acadêmico</option>
+                                    <option value="Mudanca-de-matrícula">Matrícula</option>
+                                    <option value="Processo-seletivo">Processo Seletivo</option>
+                                    <option value="Emissao-de-diploma">Emitir Diploma</option>
+                                    <option value="Elaboracao-de-relatorio">Elaborar Relatório</option>
+                    </select> 
+
+                    <label for="comunidade" class="form-label">Eu sou:</label>
+                    <select name="comunidade" id="comunidade" class="form-select Input">
+                            <option value=""></option>
+                            <option value="ensinoMedio" >Ensino Médio.</option>
+                            <option value="EnsinoTecnico">Ensino técnico.</option>
+                            <option value="graduacao">Graduação.</option>
+                            <option value="posGraduacao">Pós-Graduação.</option>
+                            <option value="exAluno">Ex-aluno.</option>
+                            <option value="naoEstudante">Ainda não sou estudante.</option>
+                    </select>
+
+
+                    <label for="NecessidadePreferencia" class="form-label Input">Preferência de acordo com a lei?</label>
+                    <div class="prioridade">
+                                    <div class="preferenciasim">
+                                        <label for="preferenciasim">Sim</label>
+                                        <input type="radio" id="preferenciasim" name="preferencia" value="sim">
+                                    </div>
+                                    
+                                    <div class="preferencianao">
+                                        <label for="preferencianao">Não</label>
+                                        <input type="radio" id="preferencianao" name="preferencia" value="nao">
+                                    </div>
+                    </div>
+
+                    <button type="submit" class="botao">GERAR</button>
+                    </form>
+    </div>
+</div>
