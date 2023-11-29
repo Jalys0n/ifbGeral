@@ -18,7 +18,7 @@ def gerarSenhaPreferencial(length=6):
 
 #table usuario
 
-def cadastrarUsuario(cpf_usuario, nome):
+def cadastrarUsuario(cpf_usuario, nome, comunidade):
     sql = 'INSERT INTO usuario (cpf_usuario,nome, origem_usuario) values (?,?,?)'
     cursor = conexao.cursor()
     cursor.execute(sql,(cpf_usuario, nome))
@@ -47,7 +47,13 @@ def incluirTerminoAtendimento(idSenha):
    sql = 'insert into atendimento (finalAtendimento) where idSenha = ?'
    cursor = conexao.cursor()
    cursor.execute(sql, (idSenha))
-   cursor.closer()   
+   cursor.close()   
+
+def cadastrarTipoAtendimento(tipoAtendimento):
+   sql = 'insert into tipo_atendimento (tipoAtendimento) values (?)'
+   cursor = conexao.cursor()
+   cursor.execute(sql,(tipoAtendimento))
+   cursor.close()
 
 #senhas
 

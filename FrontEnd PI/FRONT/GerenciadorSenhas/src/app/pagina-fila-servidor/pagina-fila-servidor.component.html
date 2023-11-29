@@ -1,7 +1,7 @@
 <header class="container-fluid header">
     <div class="row">
         
-        <div class="col-6 img">
+        <div class="col-6 img divimgLogo">
             <img src="../assets/img/header/logobsb.jpg" alt="" class="mt-2 imgLogo">
         </div>
 
@@ -14,31 +14,32 @@
     </div>
 </header>
 <div class="container-fluid formulario">
-    <div class="row">        
 
-        <div class="col-6 campoSenhaGeradaMaior">
+
+    <div class="formcampo">      
+        <form action="" class="mb-3 campoSenhaGeradaMaior">
            <div class="senhaGeradaMenor mt-2">
-            <p class="pData mt-3">Brasília, {{data}}</p>
-            <p class="senhaAtual mt-4">
-                <b>SENHA: ABC123</b><br>
-                GUICHÊ: 1 <br>
-                ASSUNTO: DIPLOMA <br>
-                ENSINO MÉDIO
-            </p>
-            <p class="senhaAtua2 mt-4">
-                <b>SENHA: ABC124</b><br>
-                GUICHÊ: 2 <br>
-                ASSUNTO: NEAD <br>
-                GRADUAÇÃO
-            </p>
-            <p class="senhaProxima mt-4">
-                <b>PRÓXIMA: ABC125</b><br>
-                ASSUNTO: TRANCAMENTO <br>
-                PÓS GRADUAÇÃO
-            </p>
+                <p class="pData mt-3">Brasília, {{data}}</p>
+                <p class="senhaAtual mt-4">
+                    <b>SENHA: ABC123</b><br>
+                    GUICHÊ: 1 <br>
+                    ASSUNTO: DIPLOMA <br>
+                    ENSINO MÉDIO
+                </p>
+                <p class="senhaAtua2 mt-4">
+                    <b>SENHA: ABC124</b><br>
+                    GUICHÊ: 2 <br>
+                    ASSUNTO: NEAD <br>
+                    GRADUAÇÃO
+                </p>
+                <p class="senhaProxima mt-4">
+                    <b>PRÓXIMA: ABC125</b><br>
+                    ASSUNTO: TRANCAMENTO <br>
+                    PÓS GRADUAÇÃO
+                </p>
             
            </div>
-           <p class="mt-2 avaliacao"><button class="botao col-2">Chamar próxima senha</button></p>
-        </div>
+           <button class="botao col-2">Chamar próxima senha</button>
+        </form>
     </div>
 </div>
