@@ -9,13 +9,12 @@ CORS(app)
 def cadastroUsuario():
     try:
         requisicao = request.get_json()
-        
-        
-        nomeUsuario = requisicao['nomeUsuario']
-        cpf = requisicao['cpf']
-        assunto = requisicao['assunto']
-        comunidade = requisicao['comunidade']
-        preferencia = requisicao['preferencia']
+
+        nomeUsuario = requisicao.get('nomeUsuario')
+        cpf = requisicao.get('cpf')
+        assunto = requisicao.get('assunto')
+        comunidade = requisicao.get('comunidade')
+        preferencia = requisicao.get('preferencia')
 
         if preferencia == 'preferenciasim':
             senha = gerarSenhaPreferencial()

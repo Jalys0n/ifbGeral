@@ -67,12 +67,12 @@ def cadastrarTipoAtendimento(tipoAtendimento):
 
 #senhas
 
-#def listarSenhasNaFila():
- #  sql = 'SELECT * FROM nafila'
-  # cursor = conexao.cursor()
-  # cursor.execute(sql)
-  # resultado = cursor.fetchall()
-  # cursor.close()
+def listarSenhas():
+   sql = 'select idSenha from senhas'
+   cursor = conexao.cursor()
+   cursor.execute(sql)
+   conexao.commit()
+   cursor.close()
 
 
 def cadastrarNaTabelaSenha(idSenha):
@@ -82,12 +82,14 @@ def cadastrarNaTabelaSenha(idSenha):
    conexao.commit()
    cursor.close()
 
-def cadastrarSenha(idSenha):
-    sql = 'INSERT INTO emFila (idSenha) values (?)'
-    cursor = conexao.cursor()
-    cursor.execute(sql, (idSenha))
-    conexao.commit()
-    cursor.close() 
+#assim q chamar a senha
+def alterarStatus():
+   sql = 'insert into senhas(status) values (?)'
+   cursor = conexao.cursor()
+   cursor.execute(sql)
+   conexao.commit()
+   cursor.close()
+
 
 
 #tabelas existentes no banco de dados: atendimento, senhas, servidores, tipo_atendimento, usuarios. ai eu acho q vai ter duas novas
