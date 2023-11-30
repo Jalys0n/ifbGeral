@@ -26,6 +26,15 @@ def cadastrarUsuario(cpf_usuario, nome, comunidade):
     cursor.close()
 
 
+def listarUsuarios():
+    sql = 'SELECT * FROM usuarios'
+    cursor = conexao.cursor()
+    cursor.execute(sql)
+    resultados = cursor.fetchall()
+    cursor.close()    
+    return resultados
+
+
 #atendimentos 
 
 def cadastrarAtendimento(guiche, fk_cpf_usuario, fk_cpf_servidor, fk_idSenha):
@@ -41,6 +50,7 @@ def listarAtendimento():
    cursor.execute(sql)
    resultado = cursor.fetchall()
    cursor.close()
+   return resultado
 
    #função pra ser chamada quando terminar o atendimento
 def incluirTerminoAtendimento(idSenha):
@@ -57,12 +67,12 @@ def cadastrarTipoAtendimento(tipoAtendimento):
 
 #senhas
 
-def listarSenhasNaFila():
-   sql = 'SELECT * FROM nafila'
-   cursor = conexao.cursor()
-   cursor.execute(sql)
-   resultado = cursor.fetchall()
-   cursor.close()
+#def listarSenhasNaFila():
+ #  sql = 'SELECT * FROM nafila'
+  # cursor = conexao.cursor()
+  # cursor.execute(sql)
+  # resultado = cursor.fetchall()
+  # cursor.close()
 
 
 def cadastrarNaTabelaSenha(idSenha):

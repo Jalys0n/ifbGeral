@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from controller import gerarSenhaNormal,gerarSenhaPreferencial, cadastrarUsuario, cadastrarSenha, cadastrarAtendimento, listarAtendimento, cadastrarTipoAtendimento, listarSenhasNaFila, cadastrarNaTabelaSenha
+from controller import gerarSenhaNormal,gerarSenhaPreferencial, cadastrarUsuario, cadastrarSenha, cadastrarAtendimento, listarAtendimento, cadastrarTipoAtendimento, cadastrarNaTabelaSenha, listarUsuarios, listarAtendimento
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
@@ -8,14 +8,14 @@ CORS(app)
 @app.route('/cadastro', methods = ['POST'])
 def cadastroUsuario():
     try:
-        data = request.get_json()
+        requisicao = request.get_json()
         
         
-        nomeUsuario = data['nomeUsuario']
-        cpf = data['cpf']
-        assunto = data['assunto']
-        comunidade = data['comunidade']
-        preferencia = data['preferencia']
+        nomeUsuario = requisicao['nomeUsuario']
+        cpf = requisicao['cpf']
+        assunto = requisicao['assunto']
+        comunidade = requisicao['comunidade']
+        preferencia = requisicao['preferencia']
 
         if preferencia == 'preferenciasim':
             senha = gerarSenhaPreferencial()
@@ -35,7 +35,13 @@ def cadastroUsuario():
     
     
 
-
+@app.route('/listar-atendimentos', methods =['GET'])
+def listarAtendimentos():
+    try:
+        atendimentos = listarAtendimento()
+        return jsonify({'Atendimentos': atendimentos})
+    except Exception as e:
+        return jsonify({'mensagem': 'erro'})   
 
 
 
@@ -46,6 +52,11 @@ def cadastroUsuario():
  #   cpf_servidor = request.form.get['cpf_servidor']
   #  senha_servidor = request.form.get['senha_servidor']
    # loginServidor(cpf_servidor, senha_servidor)
+
+
+
+
+
 
 
 @app.route('/chamarSenha', methods =['GET'])
