@@ -91,6 +91,15 @@ def alterarStatus():
    cursor.close()
 
 
+#servidor:
+def loginServidor(cpf_servidor, senha_servidor):
+    conexao = conexao()  # Substitua pela instância real da sua classe de conexão
+    servidor = conexao.executar_query("SELECT * FROM servidores WHERE cpf_servidor = %s AND senha_servidor = %s", (cpf_servidor, senha_servidor))
+
+    if servidor:
+        return True
+    else:
+        return False
 
 #tabelas existentes no banco de dados: atendimento, senhas, servidores, tipo_atendimento, usuarios. ai eu acho q vai ter duas novas
 #

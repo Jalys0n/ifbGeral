@@ -3,7 +3,7 @@ import mysql.connector
 conexao = mysql.connector.connect(
     host = 'localhost',
     user= 'root',
-    password = 'Odekomorode2',
+    password = 'odekomorode',
     database = 'registrodeatendimentora'
      )
 if conexao:

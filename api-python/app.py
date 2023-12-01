@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from controller import gerarSenhaNormal,gerarSenhaPreferencial, cadastrarUsuario, cadastrarSenha, cadastrarAtendimento, listarAtendimento, cadastrarTipoAtendimento, cadastrarNaTabelaSenha, listarUsuarios, listarAtendimento
+from controller import gerarSenhaNormal,gerarSenhaPreferencial, cadastrarNaTabelaSenha, cadastrarUsuario, cadastrarAtendimento, listarAtendimento, cadastrarTipoAtendimento, cadastrarNaTabelaSenha, listarUsuarios, listarAtendimento, loginServidor
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
@@ -23,9 +23,9 @@ def cadastroUsuario():
 
 
             cadastrarUsuario(cpf, nomeUsuario, comunidade)
-            cadastrarSenha(senha)
+            cadastrarNaTabelaSenha(senha)
             cadastrarTipoAtendimento(assunto)
-        return jsonify({'senha': 'senha'})  
+        return jsonify({'senha': senha})  
     
 
     
@@ -46,11 +46,20 @@ def listarAtendimentos():
 
 #referentes ao servidor:
 
-#@app.route('/loginServidor', methods = ['POST'])
-#def loginServidor():
- #   cpf_servidor = request.form.get['cpf_servidor']
-  #  senha_servidor = request.form.get['senha_servidor']
-   # loginServidor(cpf_servidor, senha_servidor)
+@app.route('/login-servidor', methods = ['POST'])
+def login_servidor():
+    try:
+        cpf_servidor = request.form.get('cpf_servidor')
+        senha_servidor = request.form.get('senha_servidor')
+
+        if loginServidor(cpf_servidor, senha_servidor):
+            return jsonify({'mensagem': 'Login do servidor bem-sucedido'})
+        else:
+            return jsonify({'mensagem': 'Login do servidor falhou'})
+
+    except Exception as e:
+        return jsonify({'mensagem': 'Erro ao processar o login do servidor'})
+ 
 
 
 
