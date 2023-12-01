@@ -67,7 +67,7 @@ def login_servidor():
 
 
 
-@app.route('/chamarSenha', methods =['GET'])
+@app.route('/chamar-senha', methods =['GET'])
 def chamarSenha():
    
     return "Senha convocada!"

@@ -3,14 +3,14 @@ import string
 from conexao import conexao
 
 
-def gerarSenhaNormal(length=6):
+def gerarSenhaNormal():
     letras = 'PREF'
     numeros = ''.join(random.choice(string.digits) for i in range(3)) 
     senha = letras + numeros   
 
     return senha
 
-def gerarSenhaPreferencial(length=6):
+def gerarSenhaPreferencial():
    letras = 'PQM'
    numeros = ''.join(random.choice(string.digits) for i in range(3))
    senha = letras + numeros
