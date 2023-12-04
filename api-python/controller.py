@@ -3,25 +3,24 @@ import string
 from conexao import conexao
 
 
-def gerarSenhaNormal():
+def gerarSenhaNormal(length=6):
     letras = 'PREF'
     numeros = ''.join(random.choice(string.digits) for i in range(3)) 
     senha = letras + numeros   
 
     return senha
 
-def gerarSenhaPreferencial():
+def gerarSenhaPreferencial(length=6):
    letras = 'PQM'
    numeros = ''.join(random.choice(string.digits) for i in range(3))
    senha = letras + numeros
    return senha
 
 #table usuario
-
-def cadastrarUsuario(cpf_usuario, nome, comunidade):
-    sql = 'INSERT INTO usuario (cpf_usuario,nome, origem_usuario) values (?,?,?)'
+def cadastrarUsuario(cpf_usuario, nome, fk_tipo_usuario):
     cursor = conexao.cursor()
-    cursor.execute(sql,(cpf_usuario, nome))
+    sql = 'INSERT INTO usuarios (cpf_usuario, nome, fk_tipo_usuario) VALUES (?, ?, ?)'
+    cursor.execute(sql, (cpf_usuario, nome, fk_tipo_usuario))
     conexao.commit()
     cursor.close()
 
@@ -37,15 +36,15 @@ def listarUsuarios():
 
 #atendimentos 
 
-def cadastrarAtendimento(guiche, fk_cpf_usuario, fk_cpf_servidor, fk_idSenha):
-   sql = 'INSERT INTO atendimento (guiche, fk_cpf_usuario, fk_cpf_servidor, fk_idSenha)'
+def cadastrarAtendimento(fk_cpf_usuario, fk_idSenha, fk_tipo_atendimento):
    cursor = conexao.cursor()
-   cursor.execute(sql, (guiche, fk_cpf_usuario, fk_cpf_servidor, fk_idSenha))
+   sql = 'INSERT INTO atendimentos (fk_cpf_usuario, fk_idSenha, fk_tipo_atendimento) values (?,?,?)'
+   cursor.execute(sql,(fk_cpf_usuario, fk_idSenha, fk_tipo_atendimento))
    conexao.commit()
    cursor.close()      
 
 def listarAtendimento():
-   sql = 'SELECT * FROM atendimento'
+   sql = 'SELECT * FROM atendimentos'
    cursor = conexao.cursor()
    cursor.execute(sql)
    resultado = cursor.fetchall()
@@ -54,16 +53,13 @@ def listarAtendimento():
 
    #função pra ser chamada quando terminar o atendimento
 def incluirTerminoAtendimento(idSenha):
-   sql = 'insert into atendimento (finalAtendimento) where idSenha = ?'
-   cursor = conexao.cursor()
-   cursor.execute(sql, (idSenha))
-   cursor.close()   
+    sql = 'UPDATE atendimentos SET finalAtendimento = CURRENT_TIMESTAMP WHERE fk_idSenha = ?'
+    cursor = conexao.cursor()
+    cursor.execute(sql, (idSenha,))
+    conexao.commit()
+    cursor.close()
 
-def cadastrarTipoAtendimento(tipoAtendimento):
-   sql = 'insert into tipo_atendimento (tipoAtendimento) values (?)'
-   cursor = conexao.cursor()
-   cursor.execute(sql,(tipoAtendimento))
-   cursor.close()
+
 
 #senhas
 
@@ -76,19 +72,21 @@ def listarSenhas():
 
 
 def cadastrarNaTabelaSenha(idSenha):
-   sql = 'INSert into senhas (idSenha) values (?)'
-   cursor = conexao.cursor()
-   cursor.execute(sql)
-   conexao.commit()
-   cursor.close()
+    sql = 'INSERT INTO senhas (idSenha, fk_status_senha) VALUES (?, 1)'
+    cursor = conexao.cursor()
+    cursor.execute(sql, (idSenha,))
+    conexao.commit()
+    cursor.close()
+
 
 #assim q chamar a senha
-def alterarStatus():
-   sql = 'insert into senhas(status) values (?)'
-   cursor = conexao.cursor()
-   cursor.execute(sql)
-   conexao.commit()
-   cursor.close()
+def alterarStatus(idSenha, novoStatus):
+    sql = 'UPDATE senhas SET fk_status_senha = ? WHERE idSenha = ?'
+    cursor = conexao.cursor()
+    cursor.execute(sql, (novoStatus, idSenha))
+    conexao.commit()
+    cursor.close()
+
 
 
 #servidor:
