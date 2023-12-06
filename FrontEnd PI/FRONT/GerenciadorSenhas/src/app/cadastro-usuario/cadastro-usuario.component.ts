@@ -1,30 +1,44 @@
-import { Component } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import { UsuarioService } from './usuarioService';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../app.service';
 
 @Component({
   selector: 'app-cadastro-usuario',
   templateUrl: './cadastro-usuario.component.html',
   styleUrls: ['./cadastro-usuario.component.css']
 })
-export class CadastroUsuarioComponent {
-  constructor(private http: HttpClient) { }
-  
-  cadastrarUsuario(){
-    const dados = {
-      cpf : '06061997132',
-      nomeUsuario : 'José',
-      assunto: 'Trancar matrícula',
-      comunidade: 'Externa',
-      preferencia: 'preferenciasim'
-    };
-    this.http.post('http://127.0.0.1:5000/cadastro', dados).subscribe(
-      (response)=>{
-        console.log(response)
-      }, 
-      (error)=>{
-        console.log(error)
+export class CadastroUsuarioComponent implements OnInit {
+  assuntos: any[] = [];
+  tiposUsuarios: any[] = [];
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    console.log('ngOnInit foi chamado!');
+    this.carregarAssuntos();
+    this.carregarTiposUsuarios();
+  }
+
+  carregarAssuntos() {
+    this.apiService.getAssuntos().subscribe(
+      (data) => {
+        this.assuntos = data;
+        console.log('Assuntos carregados:', this.assuntos);
+      },
+      (error) => {
+        console.error('Erro ao obter assuntos:', error);
       }
-    )
+    );
+  }
+
+  carregarTiposUsuarios() {
+    this.apiService.getTiposUsuarios().subscribe(
+      (data) => {
+        this.tiposUsuarios = data;
+        console.log('Tipos de usuários carregados:', this.tiposUsuarios);
+      },
+      (error) => {
+        console.error('Erro ao obter tipos de usuários:', error);
+      }
+    );
   }
 }

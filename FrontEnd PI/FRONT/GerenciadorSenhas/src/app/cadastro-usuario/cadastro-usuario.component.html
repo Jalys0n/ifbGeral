@@ -33,29 +33,15 @@
 
                         <label for="assuntoAtendimento" class="form-label">Assunto: </label>
                         <select id="assuntoAtendimento" class="form-select Input" name="assuntoAtendimento">
-                                    <option value=""></option>
-                                    <option value="Trancamento-de-Matricula">Trancamento de Matrícula</option>
-                                    <option value="Trancamento-de-materia">Trancamento de Matéria</option>
-                                    <option value="Emissao-de-declaracao">Emitir Declaração</option>
-                                    <option value="Emissao-de-carteirinha">Emitir Carteirinha</option>
-                                    <option value="Emissao-de-historico">Emitir Histórico</option>
-                                    <option value="Registro-academico">Registro Acadêmico</option>
-                                    <option value="Mudanca-de-matrícula">Matrícula</option>
-                                    <option value="Processo-seletivo">Processo Seletivo</option>
-                                    <option value="Emissao-de-diploma">Emitir Diploma</option>
-                                    <option value="Elaboracao-de-relatorio">Elaborar Relatório</option>
-                    </select> 
-
-                    <label for="comunidade" class="form-label">Eu sou:</label>
-                    <select name="comunidade" id="comunidade" class="form-select Input">
-                            <option value=""></option>
-                            <option value="ensinoMedio" >Ensino Médio.</option>
-                            <option value="EnsinoTecnico">Ensino técnico.</option>
-                            <option value="graduacao">Graduação.</option>
-                            <option value="posGraduacao">Pós-Graduação.</option>
-                            <option value="exAluno">Ex-aluno.</option>
-                            <option value="naoEstudante">Ainda não sou estudante.</option>
-                    </select>
+                          <option value=""></option>
+                          <option *ngFor="let assunto of assuntos" [value]="assunto.value">{{ assunto.label }}</option>
+                        </select>
+                        
+                        <label for="tipoUsuario" class="form-label">Tipo de Usuário: </label>
+                        <select id="tipoUsuario" class="form-select Input" name="tipoUsuario">
+                          <option value=""></option>
+                          <option *ngFor="let tipoUsuario of tiposUsuarios" [value]="tipoUsuario.value">{{ tipoUsuario.label }}</option>
+                        </select>        
 
 
                     <label for="NecessidadePreferencia" class="form-label Input">Preferência de acordo com a lei?</label>
