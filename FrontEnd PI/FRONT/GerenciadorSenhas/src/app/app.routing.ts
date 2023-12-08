@@ -9,9 +9,9 @@ import { ModuleWithProviders } from '@angular/core';
 
 const ROTASGERENCIADOR: Routes=[
     {path:'', component: CadastroUsuarioComponent},
-    {path:'Login-Servidor', component: LoginServidorComponent},
-    {path: 'SuaSenha', component: PaginaSenhaGeradaComponent},
-    {path:'Fila-Servidor', component: PaginaFilaServidorComponent}
+    {path:'loginservidor', component: LoginServidorComponent},
+    {path: 'sua-senha', component: PaginaSenhaGeradaComponent},
+    {path:'filaservidor', component: PaginaFilaServidorComponent}
 ];
 
 export const routing: ModuleWithProviders<RouterModule>=RouterModule. forRoot(ROTASGERENCIADOR);
