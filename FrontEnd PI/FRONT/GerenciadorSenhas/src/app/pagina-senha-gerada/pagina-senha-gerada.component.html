@@ -23,10 +23,10 @@
     <div class="formcampo">
         <div class="campoSenhaGeradaMaior mt-3">
             <div class="senhaGeradaMenor mt-3">
-                <p class="pData mt-3">Brasília, {{data}}</p>
+                <p class="pData mt-3">Brasília, {{hoje | date :'dd/MM/yyyy HH:mm' : '00:00' }}</p>
                 <p class="senhaAtual mt-4">
                         SENHA: <br>
-                        123ABC
+                        {{senha}}
                 </p>
             </div>
             <div class="avaliacao">

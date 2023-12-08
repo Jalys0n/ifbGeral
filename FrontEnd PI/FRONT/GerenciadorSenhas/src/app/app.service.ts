@@ -17,4 +17,10 @@ export class ApiService {
   getTiposUsuarios(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/tipo-usuario`);
   }
+
+  cadastrarUsuario(dadosUsuario: any): Observable<any> {
+    const url = `${this.apiUrl}/cadastro`; 
+    
+    return this.http.post<any>(url, dadosUsuario);
+  }
 }

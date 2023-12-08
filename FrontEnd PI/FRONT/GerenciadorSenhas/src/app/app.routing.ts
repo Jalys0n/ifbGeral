@@ -10,7 +10,7 @@ import { ModuleWithProviders } from '@angular/core';
 const ROTASGERENCIADOR: Routes=[
     {path:'', component: CadastroUsuarioComponent},
     {path:'Login-Servidor', component: LoginServidorComponent},
-    {path: 'SuaSenha', component: PaginaSenhaGeradaComponent},
+    {path: 'sua-senha', component: PaginaSenhaGeradaComponent},
     {path:'Fila-Servidor', component: PaginaFilaServidorComponent}
 ];
 

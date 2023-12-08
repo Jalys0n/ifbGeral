@@ -9,6 +9,7 @@ import { PaginaSenhaGeradaComponent } from './pagina-senha-gerada/pagina-senha-g
 import { PaginaFilaServidorComponent } from './pagina-fila-servidor/pagina-fila-servidor.component';
 import { routing } from './app.routing';
 import{ HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,9 @@ import{ HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     routing,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

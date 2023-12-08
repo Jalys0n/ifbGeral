@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../app.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -9,13 +10,37 @@ import { ApiService } from '../app.service';
 export class CadastroUsuarioComponent implements OnInit {
   assuntos: any[] = [];
   tiposUsuarios: any[] = [];
+  nomeUsuario: string = '';
+  cpf: string = '';
+  assunto: string = '';
+  comunidade: string = '';
+  preferencia: string = '';
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router:Router) {}
 
   ngOnInit(): void {
     console.log('ngOnInit foi chamado!');
     this.carregarAssuntos();
     this.carregarTiposUsuarios();
+  }
+  
+  cadastrarUsuario() {
+
+    const dadosCadastro = {
+      nomeUsuario: this.nomeUsuario,
+      cpf: this.cpf,
+      assunto: this.assunto,
+      comunidade: this.comunidade,
+      preferencia: this.preferencia
+    };
+    this.apiService.cadastrarUsuario(dadosCadastro).subscribe(
+      (data: any) => {
+        this.router.navigate(['/sua-senha'], { queryParams: { senha: data.senha } });
+      },
+      (error:any) => {
+        console.error('Erro ao cadastrar usuário:', error);
+      }
+    );
   }
 
   carregarAssuntos() {
