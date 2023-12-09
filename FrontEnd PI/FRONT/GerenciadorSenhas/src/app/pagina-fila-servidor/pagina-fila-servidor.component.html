@@ -19,27 +19,27 @@
     <div class="formcampo">      
         <form action="" class="mb-3 campoSenhaGeradaMaior">
            <div class="senhaGeradaMenor mt-2">
-                <p class="pData mt-3">Brasília, {{data}}</p>
-                <p class="senhaAtual mt-4">
-                    <b>SENHA: ABC123</b><br>
+                <p class="pData mt-3">Brasília, {{data | date : 'dd/MM/yyyy HH:mm' : '00:00'}}</p>
+                <div class="senhaAtual mt-4">
+                    <b>1- SENHA: ABC123</b><br>
                     GUICHÊ: 1 <br>
                     ASSUNTO: DIPLOMA <br>
                     ENSINO MÉDIO
-                </p>
-                <p class="senhaAtua2 mt-4">
-                    <b>SENHA: ABC124</b><br>
+                </div>
+                <div class="senhaAtual2 mt-4">
+                    <b>2- SENHA: ABC124</b><br>
                     GUICHÊ: 2 <br>
                     ASSUNTO: NEAD <br>
                     GRADUAÇÃO
-                </p>
-                <p class="senhaProxima mt-4">
+                </div>
+                <div class="senhaProxima mt-4">
                     <b>PRÓXIMA: ABC125</b><br>
                     ASSUNTO: TRANCAMENTO <br>
                     PÓS GRADUAÇÃO
-                </p>
+                </div>
             
            </div>
-           <button class="botao col-2">Chamar próxima senha</button>
+           <button class="botao col-2">CHAMAR PRÓXIMA SENHA</button>
         </form>
     </div>
 </div>

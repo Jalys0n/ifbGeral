@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./pagina-fila-servidor.component.css']
 })
 export class PaginaFilaServidorComponent {
-  data = "31 de outubro de 2023.";
+  data = new Date();
 
 }

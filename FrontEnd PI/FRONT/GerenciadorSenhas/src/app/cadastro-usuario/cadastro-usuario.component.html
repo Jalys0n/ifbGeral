@@ -37,8 +37,13 @@
                           <option *ngFor="let assunto of assuntos" [value]="assunto.value">{{ assunto.label }}</option>
                         </select>
                         
+<<<<<<< HEAD
                         <label for="tipoUsuario" class="form-label">Tipo de Usuário: </label>
                         <select id="tipoUsuario" class="form-select Input" name="tipoUsuario" [(ngModel)]="comunidade">
+=======
+                        <label for="tipoUsuario" class="form-label">Eu sou: </label>
+                        <select id="tipoUsuario" class="form-select Input" name="tipoUsuario">
+>>>>>>> 4ce1b528094dbbb58cbb8fd4b24a48353cb47c6c
                           <option value=""></option>
                           <option *ngFor="let tipoUsuario of tiposUsuarios" [value]="tipoUsuario.value">{{ tipoUsuario.label }}</option>
                         </select>        

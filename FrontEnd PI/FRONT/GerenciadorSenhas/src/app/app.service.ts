@@ -10,10 +10,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  //retornar os assuntos
   getAssuntos(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/obter-atendimentos`);
   }
-
+  // retornar os tipos de usuários
   getTiposUsuarios(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/tipo-usuario`);
   }
